@@ -1,0 +1,21 @@
+spring:
+  application:
+  name: GameStoreBackendKotlin
+  datasource:
+    url: 'jdbc:postgresql://dpg-co4kgh779t8c7393hdd0-a.oregon-postgres.render.com/openstore_bs4y'
+    username: 'openstore_bs4y_user'
+    password: 'jrKjOGTWHvujK3fs8s2zL9oaBOz5Fwci'
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 10MB
+jwt-security:
+  secret: 'dASDASdsadasdsadhjksahdbksjahdkjlshakDJHsakjhdJKALhdksajhdlKJSAHdkjhASLJKDha'
+  expirationTime: 600 #minutes
+  expirationTimeRefresh: 6000 #minutes
+  expirationTimeTemporary: 5 #minutes
+robokassa:
+  login: opensource_vgt
+  password1: 'kN90d7uX2kRkuGPTrsL7'
+  password2: 'JrnoGXFLH1e51dgBCd30'
+  isTest: 1
