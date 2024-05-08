@@ -6,11 +6,16 @@ import com.gamestore.gamestorebackendkotlin.auth.dto.users.UserChangePasswordOut
 import com.gamestore.gamestorebackendkotlin.auth.dto.users.UserCreateInput
 import com.gamestore.gamestorebackendkotlin.auth.dto.users.UserOutput
 import com.gamestore.gamestorebackendkotlin.auth.dto.users.UserUpdateInput
+import com.gamestore.gamestorebackendkotlin.auth.models.roles.RoleEntity
+import com.gamestore.gamestorebackendkotlin.auth.models.roles.table.RoleTable
+import com.gamestore.gamestorebackendkotlin.auth.models.roles.table.RolesEnum
 import com.gamestore.gamestorebackendkotlin.auth.models.users.UserEntity
 import com.gamestore.gamestorebackendkotlin.auth.models.users.table.UserTable
 import com.gamestore.gamestorebackendkotlin.auth.models.users.table.UsersRolesTable
 import com.gamestore.gamestorebackendkotlin.extensions.exists
+import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 import org.jetbrains.exposed.sql.insert
+import org.jetbrains.exposed.sql.not
 import org.jetbrains.exposed.sql.transactions.transaction
 import org.jetbrains.exposed.sql.update
 import org.springframework.security.crypto.password.PasswordEncoder
@@ -32,10 +37,12 @@ class UsersRepository(
                     email = body.email
                 }
             }
-
-        UsersRolesTable.insert {
-            it[user] = newUserEntity.id
-            it[role] = 2
+        val roleEntity = RoleEntity.find(RoleTable.roleEnum.eq(RolesEnum.USER)).firstOrNull()
+        if(roleEntity != null) {
+            UsersRolesTable.insert {
+                it[user] = newUserEntity.id
+                it[role] = roleEntity.id
+            }
         }
 
         return newUserEntity.toDTO()

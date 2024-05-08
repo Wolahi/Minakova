@@ -22,19 +22,6 @@ class ValidatePasswordField : ValidatorInterface<String> {
             errors["Проверка на наличие пароля"] = "Введите пароль"
             return ValidationError(ValidationProps.VALIDATION_MSG_USER, errors = errors)
         }
-        if (ValidationProps.LowerCaseLetter.find(arg) == null) {
-            errors["Строчные буквы пароля"] = "Используйте хотя бы 1 строчные буквы"
-        }
-        if (ValidationProps.UpperCaseLetter.find(arg) == null) {
-            errors["Заглавные буквы пароля"] = "Используйте хотя бы 1 заглавную букву"
-        }
-        if (ValidationProps.SpecialCaseLetter.find(arg) == null) {
-            errors["Специальные символы пароля"] =
-                "Используйте хотя бы 1 специальный символ - ?, !, @, #, *, %, ^, &, -, +, ., ,"
-        }
-        if (ValidationProps.DecimalCase.find(arg) == null) {
-            errors["Длина пароля"] = "Пароль должен содержать хотя бы 1 число"
-        }
         if (arg.length < ValidationProps.LENGTH_PASSWORD) {
             errors["Длина пароля"] = "Пароль должен быть длинее 5 сиволов"
         }

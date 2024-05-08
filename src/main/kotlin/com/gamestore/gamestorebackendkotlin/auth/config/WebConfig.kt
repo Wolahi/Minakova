@@ -33,12 +33,11 @@ class WebConfig(
             .authorizeHttpRequests {
                 it
                     .requestMatchers(HttpMethod.POST, "/user/register", "/auth/login").permitAll()
-                    .requestMatchers(HttpMethod.GET, "/token/validate", "/token/validateUser").authenticated()
+                    .requestMatchers(HttpMethod.GET, "/anketa/all").permitAll()
+                    .requestMatchers(HttpMethod.POST, "/anketa/create").authenticated()
+                    .requestMatchers(HttpMethod.GET, "/token/validate", "/token/validateUser", "/anketa/{id}").authenticated()
                     .requestMatchers(HttpMethod.OPTIONS).authenticated()
                     .requestMatchers(HttpMethod.GET, "/auth/me").authenticated()
-                    .requestMatchers(HttpMethod.GET, "/kassa/**").authenticated()
-                    .requestMatchers(HttpMethod.POST, "/kassa/**").permitAll()
-                    .requestMatchers(HttpMethod.GET, "/useroperations").authenticated()
                     .anyRequest().permitAll()
             }
             .addFilter(
