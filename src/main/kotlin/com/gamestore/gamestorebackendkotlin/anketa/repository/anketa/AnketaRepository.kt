@@ -19,6 +19,7 @@ import org.springframework.stereotype.Repository
 import org.springframework.transaction.annotation.Transactional
 import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
+import org.jetbrains.exposed.sql.SqlExpressionBuilder.greaterEq
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.lessEq
 import org.jetbrains.exposed.sql.and
 import org.jetbrains.exposed.sql.insertAndGetId
@@ -100,7 +101,7 @@ class AnketaRepository {
         var weightAnswers = 0;
         answers.forEach { answer -> weightAnswers += answer.get(0).weight}
 
-        val result = ResultEntity.find(ResultTable.answersWeight.lessEq(weightAnswers).and(ResultTable.anketaId.eq(body.anketaID))).firstOrNull()
+        val result = ResultEntity.find(ResultTable.answersWeight.greaterEq(weightAnswers).and(ResultTable.anketaId.eq(body.anketaID))).firstOrNull()
 
         if(result != null) {
             return result.toDTO()
