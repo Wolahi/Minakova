@@ -13,8 +13,7 @@ class AnswerEntity(id: EntityID<Long>) : ExtendedLongEntity(id, AnswerTable) {
 
     var question by AnswerTable.question
     var answer by AnswerTable.answerText
-    var result by AnswerTable.result
-
+    var weight by AnswerTable.weight
     fun toDTO(): AnswerOutput {
         return AnswerOutput(this)
     }

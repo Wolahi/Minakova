@@ -34,7 +34,7 @@ class WebConfig(
                 it
                     .requestMatchers(HttpMethod.POST, "/user/register", "/auth/login").permitAll()
                     .requestMatchers(HttpMethod.GET, "/anketa/all").permitAll()
-                    .requestMatchers(HttpMethod.POST, "/anketa/create").authenticated()
+                    .requestMatchers(HttpMethod.POST, "/anketa/create", "/anketa/result").authenticated()
                     .requestMatchers(HttpMethod.GET, "/token/validate", "/token/validateUser", "/anketa/{id}").authenticated()
                     .requestMatchers(HttpMethod.OPTIONS).authenticated()
                     .requestMatchers(HttpMethod.GET, "/auth/me").authenticated()

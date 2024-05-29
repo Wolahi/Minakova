@@ -1,6 +1,8 @@
 package com.gamestore.gamestorebackendkotlin.anketa.api.http
 import com.gamestore.gamestorebackendkotlin.anketa.dto.anketa.AnketaInput
 import com.gamestore.gamestorebackendkotlin.anketa.dto.anketa.AnketaPreviewOutput
+import com.gamestore.gamestorebackendkotlin.anketa.dto.answer.AnswerAnketaInput
+import com.gamestore.gamestorebackendkotlin.anketa.dto.result.ResultOutput
 import com.github.michaelbull.result.Ok
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.PostMapping
@@ -33,5 +35,10 @@ class AnketaController(val anketaService: AnketaService) {
         @RequestBody body: AnketaInput
     ): ResponseEntity<Ok<String>> {
         return ok(anketaService.createAnketa(body))
+    }
+
+    @PostMapping("/result")
+    fun result(@RequestBody body: AnswerAnketaInput): ResponseEntity<Ok<ResultOutput?>> {
+        return ok(anketaService.result(body))
     }
 }

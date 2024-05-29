@@ -5,6 +5,8 @@ spring:
     url: 'jdbc:postgresql://localhost/anketa_db'
     username: 'postgres'
     password: '1234'
+  exposed:
+    show-sql: true
   servlet:
     multipart:
       max-file-size: 5MB

@@ -3,8 +3,11 @@ package com.gamestore.gamestorebackendkotlin.anketa.api.http
 import com.gamestore.gamestorebackendkotlin.anketa.dto.anketa.AnketaInput
 import com.gamestore.gamestorebackendkotlin.anketa.dto.anketa.AnketaOutput
 import com.gamestore.gamestorebackendkotlin.anketa.dto.anketa.AnketaPreviewOutput
+import com.gamestore.gamestorebackendkotlin.anketa.dto.answer.AnswerAnketaInput
+import com.gamestore.gamestorebackendkotlin.anketa.dto.result.ResultOutput
 import com.gamestore.gamestorebackendkotlin.anketa.repository.anketa.AnketaRepository
 import com.gamestore.gamestorebackendkotlin.anketa.service.anketa.IAnketaService
+import com.gamestore.gamestorebackendkotlin.auth.errors.ValidationError
 import com.gamestore.gamestorebackendkotlin.extensions.Result
 import com.gamestore.gamestorebackendkotlin.extensions.ok
 import com.github.michaelbull.result.Ok
@@ -27,6 +30,10 @@ class AnketaService(val anketaRepository: AnketaRepository) : IAnketaService{
 
     override fun createAnketa(body: AnketaInput): Ok<String> {
         return Result.ok(anketaRepository.createAnketa(body))
+    }
+
+    override fun result(body: AnswerAnketaInput): Ok<ResultOutput?> {
+        return Result.ok(anketaRepository.result(body))
     }
 
 }
