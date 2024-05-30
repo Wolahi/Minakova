@@ -2,9 +2,9 @@ spring:
   application:
   name: AnketaAppKotlin
   datasource:
-    url: 'jdbc:postgresql://localhost/anketa_db'
-    username: 'postgres'
-    password: '1234'
+    url: 'jdbc:postgresql://dpg-co4tqvn79t8c7397fgl0-a.frankfurt-postgres.render.com/data_wol'
+    username: 'wolahi'
+    password: 'Oun8OZFvDgjNS7fOt2Qlmu3ybMEVL7AM'
   exposed:
     show-sql: true
   servlet:
